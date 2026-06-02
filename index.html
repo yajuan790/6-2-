@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>社团活动报名</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      overflow-x: hidden;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 750px;
+      margin: 0 auto;
+      background: #000;
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+
+    /* 跳转按钮 - 图片按钮，定位到视频指定位置 */
+    .jump-btn {
+      position: absolute;
+      left: 26px;
+      top: 745px;
+      display: block;
+      z-index: 10;
+      animation: breathe 1s ease-in-out infinite;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .jump-btn img {
+      width: 70%;
+      height: auto;
+      display: block;
+      transition: transform 0.2s;
+    }
+
+    .jump-btn:active img {
+      transform: scale(0.92);
+    }
+
+    /* 呼吸态动效 - 仅缩放 */
+    @keyframes breathe {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.08);
+      }
+    }
+
+    /* 视频下方信息区 */
+    .info-bar {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 16px;
+      background: #fff;
+    }
+
+    .info-bar .title {
+      font-size: 17px;
+      font-weight: 600;
+      color: #1a1a1a;
+      line-height: 1.5;
+    }
+
+    .info-bar .desc {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    /* 底部固定跳转按钮（视频滑出视口后仍可点击） */
+    .bottom-fixed-btn {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 16px;
+      padding-bottom: calc(12px + env(safe-area-inset-bottom));
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+
+    .bottom-fixed-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .bottom-fixed-btn a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      max-width: 80%;
+      padding: 0;
+      background: none;
+      border-radius: 0;
+      font-size: 0;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .bottom-fixed-btn a img {
+      width: auto;
+      height: 48px;
+      max-width: 100%;
+      display: block;
+    }
+
+    .bottom-fixed-btn a:active {
+      opacity: 0.9;
+    }
+
+    /* 视频内报名提示文字 */
+    .video-signup-hint {
+      position: absolute;
+      left: 26px;
+      top: 700px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      background: rgba(0, 0, 0, 0.55);
+      border-radius: 16px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 9;
+      pointer-events: none;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .video-signup-hint .arrow {
+      display: inline-block;
+      animation: pointDown 1s ease-in-out infinite;
+    }
+
+    @keyframes pointDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(3px); }
+    }
+
+    /* 视频内提示文字 */
+    .video-hint {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      text-align: center;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .video-hint.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="video-wrapper" id="videoWrapper">
+    <video
+      id="videoPlayer"
+      src="6月2日社团活动宣传.mp4"
+      controls
+      playsinline
+      webkit-playsinline
+      x5-video-player-type="h5"
+      x5-video-player-fullscreen="true"
+      preload="auto"
+      poster=""
+    ></video>
+
+    <!-- 报名提示文字 -->
+    <div class="video-signup-hint" id="signupHint">
+      <span class="arrow">👇</span> 点击下方按钮报名活动
+    </div>
+
+    <!-- 视频上的浮动跳转按钮 -->
+    <a class="jump-btn" id="jumpBtn" href="https://doc.weixin.qq.com/smartsheet/s3_AC0AaAYmACkCNCi7VZvVqSRykxWfO?scode=AJEAIQdfAAoUX8XCFcAagAdAboAK8&tab=tgxWu3&viewId=ve5kMc" target="_blank" rel="noopener">
+      <img src="活动报名入口按钮.png" alt="活动报名入口">
+    </a>
+
+    <!-- 视频未播放时的提示 -->
+    <div class="video-hint" id="videoHint">点击播放视频</div>
+  </div>
+
+  <!-- 底部固定按钮（视频滑出屏幕后显示） -->
+  <div class="bottom-fixed-btn" id="bottomFixedBtn">
+    <a href="https://doc.weixin.qq.com/smartsheet/s3_AC0AaAYmACkCNCi7VZvVqSRykxWfO?scode=AJEAIQdfAAoUX8XCFcAagAdAboAK8&tab=tgxWu3&viewId=ve5kMc" target="_blank" rel="noopener">
+      <img src="活动报名入口按钮.png" alt="活动报名入口">
+    </a>
+  </div>
+
+  <script>
+    const video = document.getElementById('videoPlayer');
+    const hint = document.getElementById('videoHint');
+    const jumpBtn = document.getElementById('jumpBtn');
+    const bottomFixedBtn = document.getElementById('bottomFixedBtn');
+    const videoWrapper = document.getElementById('videoWrapper');
+
+    // 点击视频区域隐藏提示
+    video.addEventListener('play', () => {
+      hint.classList.add('hidden');
+    });
+
+    // 监听视频区域是否在视口内，控制底部固定按钮显示
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            bottomFixedBtn.classList.remove('visible');
+          } else {
+            bottomFixedBtn.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(videoWrapper);
+
+    // 微信浏览器内全屏处理
+    video.addEventListener('x5videoenterfullscreen', () => {
+      jumpBtn.style.display = 'none';
+    });
+    video.addEventListener('x5videoexitfullscreen', () => {
+      jumpBtn.style.display = 'flex';
+    });
+  </script>
+
+</body>
+</html>
