@@ -30,13 +30,13 @@
       display: block;
     }
 
-    /* 点击任意位置跳转的透明覆盖层 */
-    .click-overlay {
+    /* 视频中间偏左的可点击跳转区域 */
+    .click-zone {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 40px; /* 底部留出视频控制栏区域 */
+      left: 5%;
+      top: 40%;
+      width: 45%;
+      height: 30%;
       z-index: 10;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
@@ -45,9 +45,8 @@
     /* 点击提示文字 */
     .tap-hint {
       position: absolute;
-      bottom: 60px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 8%;
+      top: 72%;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -146,12 +145,12 @@
       poster=""
     ></video>
 
-    <!-- 点击任意位置跳转的透明覆盖层 -->
-    <div class="click-overlay" id="clickOverlay"></div>
+    <!-- 视频中间偏左的可点击跳转区域 -->
+    <div class="click-zone" id="clickZone"></div>
 
     <!-- 点击提示文字 -->
     <div class="tap-hint" id="tapHint">
-      <span class="arrow">👆</span> 点击任意位置报名活动
+      <span class="arrow">👆</span> 点击报名活动
     </div>
   </div>
 
@@ -164,16 +163,17 @@
 
   <script>
     const video = document.getElementById('videoPlayer');
-    const clickOverlay = document.getElementById('clickOverlay');
+    const clickZone = document.getElementById('clickZone');
     const tapHint = document.getElementById('tapHint');
     const bottomFixedBtn = document.getElementById('bottomFixedBtn');
     const videoWrapper = document.getElementById('videoWrapper');
 
     const SIGNUP_URL = 'https://doc.weixin.qq.com/smartsheet/s3_AC0AaAYmACkCNCi7VZvVqSRykxWfO?scode=AJEAIQdfAAoUX8XCFcAagAdAboAK8&tab=tgxWu3&viewId=ve5kMc';
 
-    // 点击视频区域任意位置跳转
-    clickOverlay.addEventListener('click', (e) => {
+    // 点击中间偏左区域跳转
+    clickZone.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       window.open(SIGNUP_URL, '_blank');
     });
 
@@ -202,11 +202,11 @@
 
     // 微信浏览器内全屏处理
     video.addEventListener('x5videoenterfullscreen', () => {
-      clickOverlay.style.display = 'none';
+      clickZone.style.display = 'none';
       tapHint.style.display = 'none';
     });
     video.addEventListener('x5videoexitfullscreen', () => {
-      clickOverlay.style.display = 'block';
+      clickZone.style.display = 'block';
       tapHint.style.display = '';
     });
   </script>
