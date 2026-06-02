@@ -30,13 +30,13 @@
       display: block;
     }
 
-    /* 视频中间偏左的可点击跳转区域 */
+    /* 视频左边热区可点击跳转 */
     .click-zone {
       position: absolute;
-      left: 5%;
-      top: 40%;
-      width: 45%;
-      height: 30%;
+      left: 0;
+      top: 30%;
+      width: 50%;
+      height: 50%;
       z-index: 10;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
@@ -78,56 +78,7 @@
       50% { transform: translateY(3px); }
     }
 
-    /* 底部固定跳转按钮（视频滑出视口后仍可点击） */
-    .bottom-fixed-btn {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 12px 16px;
-      padding-bottom: calc(12px + env(safe-area-inset-bottom));
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: center;
-      z-index: 100;
-      opacity: 0;
-      transform: translateY(100%);
-      transition: opacity 0.3s, transform 0.3s;
-      pointer-events: none;
-    }
 
-    .bottom-fixed-btn.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .bottom-fixed-btn a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: auto;
-      max-width: 80%;
-      padding: 0;
-      background: none;
-      border-radius: 0;
-      font-size: 0;
-      text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .bottom-fixed-btn a img {
-      width: auto;
-      height: 48px;
-      max-width: 100%;
-      display: block;
-    }
-
-    .bottom-fixed-btn a:active {
-      opacity: 0.9;
-    }
   </style>
 </head>
 <body>
@@ -143,6 +94,8 @@
       x5-video-player-fullscreen="true"
       preload="auto"
       poster=""
+      autoplay
+      muted
     ></video>
 
     <!-- 视频中间偏左的可点击跳转区域 -->
@@ -154,23 +107,19 @@
     </div>
   </div>
 
-  <!-- 底部固定按钮（视频滑出屏幕后显示） -->
-  <div class="bottom-fixed-btn" id="bottomFixedBtn">
-    <a href="https://doc.weixin.qq.com/smartsheet/s3_AC0AaAYmACkCNCi7VZvVqSRykxWfO?scode=AJEAIQdfAAoUX8XCFcAagAdAboAK8&tab=tgxWu3&viewId=ve5kMc" target="_blank" rel="noopener">
-      <img src="活动报名入口按钮.png" alt="活动报名入口">
-    </a>
-  </div>
-
   <script>
     const video = document.getElementById('videoPlayer');
     const clickZone = document.getElementById('clickZone');
     const tapHint = document.getElementById('tapHint');
-    const bottomFixedBtn = document.getElementById('bottomFixedBtn');
-    const videoWrapper = document.getElementById('videoWrapper');
 
     const SIGNUP_URL = 'https://doc.weixin.qq.com/smartsheet/s3_AC0AaAYmACkCNCi7VZvVqSRykxWfO?scode=AJEAIQdfAAoUX8XCFcAagAdAboAK8&tab=tgxWu3&viewId=ve5kMc';
 
-    // 点击中间偏左区域跳转
+    // 尝试自动播放
+    video.play().catch(() => {
+      // 自动播放被阻止，等待用户交互
+    });
+
+    // 点击左边热区跳转
     clickZone.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -183,22 +132,6 @@
       tapHint.style.transition = 'opacity 0.5s';
       setTimeout(() => { tapHint.style.display = 'none'; }, 500);
     });
-
-    // 监听视频区域是否在视口内，控制底部固定按钮显示
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            bottomFixedBtn.classList.remove('visible');
-          } else {
-            bottomFixedBtn.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(videoWrapper);
 
     // 微信浏览器内全屏处理
     video.addEventListener('x5videoenterfullscreen', () => {
