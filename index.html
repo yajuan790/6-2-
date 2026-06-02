@@ -30,11 +30,11 @@
       display: block;
     }
 
-    /* 跳转按钮 - 图片按钮，定位到视频指定位置 */
+    /* 跳转按钮 - 图片按钮，JS动态定位 */
     .jump-btn {
       position: absolute;
       left: 3.5%;
-      top: 55.8%;
+      top: 56%;
       display: block;
       z-index: 10;
       animation: breathe 1s ease-in-out infinite;
@@ -223,8 +223,35 @@
     const video = document.getElementById('videoPlayer');
     const hint = document.getElementById('videoHint');
     const jumpBtn = document.getElementById('jumpBtn');
+    const signupHint = document.getElementById('signupHint');
     const bottomFixedBtn = document.getElementById('bottomFixedBtn');
     const videoWrapper = document.getElementById('videoWrapper');
+
+    // 视频原始尺寸中的按钮目标位置（像素）
+    const BTN_LEFT_PX = 26;    // 距视频左边
+    const BTN_TOP_PX = 745;    // 距视频顶部
+    const HINT_LEFT_PX = 26;
+    const HINT_TOP_PX = 700;
+
+    // 根据视频实际渲染尺寸动态计算按钮位置
+    function updateButtonPosition() {
+      const videoW = video.videoWidth;
+      const videoH = video.videoHeight;
+      if (!videoW || !videoH) return;
+
+      const leftPct = (BTN_LEFT_PX / videoW * 100).toFixed(2);
+      const topPct = (BTN_TOP_PX / videoH * 100).toFixed(2);
+      const hintLeftPct = (HINT_LEFT_PX / videoW * 100).toFixed(2);
+      const hintTopPct = (HINT_TOP_PX / videoH * 100).toFixed(2);
+
+      jumpBtn.style.left = leftPct + '%';
+      jumpBtn.style.top = topPct + '%';
+      signupHint.style.left = hintLeftPct + '%';
+      signupHint.style.top = hintTopPct + '%';
+    }
+
+    // 视频元数据加载后计算位置
+    video.addEventListener('loadedmetadata', updateButtonPosition);
 
     // 点击视频区域隐藏提示
     video.addEventListener('play', () => {
