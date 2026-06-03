@@ -74,13 +74,13 @@
 
     /* 主标题 */
     .hero-title {
-      margin-top: 80px;
+      margin-top: 60px;
       z-index: 5;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 0;
-      padding-left: 6%;
+      padding-left: 4%;
       position: relative;
     }
     .hero-title img {
@@ -88,19 +88,22 @@
       height: auto;
     }
     .hero-title .title-line1 {
-      width: 130px;
-      margin-left: 0;
+      width: 120px;
+      margin-left: 10px;
       transform: rotate(-5deg);
+      z-index: 2;
     }
     .hero-title .title-line2 {
-      width: 380px;
-      margin-top: -15px;
-      margin-left: 15px;
+      width: 420px;
+      margin-top: -20px;
+      margin-left: 30px;
+      z-index: 1;
     }
     .hero-title .title-line3 {
       width: 400px;
-      margin-top: -10px;
-      margin-left: 0;
+      margin-top: -5px;
+      margin-left: 5px;
+      z-index: 2;
     }
 
     /* 涂鸦小人和铃铛 */
@@ -302,10 +305,10 @@
 
     /* 响应式 */
     @media (max-width: 375px) {
-      .hero-title { padding-left: 4%; }
-      .hero-title .title-line1 { width: 110px; }
-      .hero-title .title-line2 { width: 320px; margin-left: 10px; }
-      .hero-title .title-line3 { width: 340px; }
+      .hero-title { padding-left: 3%; }
+      .hero-title .title-line1 { width: 100px; margin-left: 5px; }
+      .hero-title .title-line2 { width: 360px; margin-left: 20px; }
+      .hero-title .title-line3 { width: 340px; margin-left: 3px; }
       .hero-title .title-line4 { width: 300px; }
       .mascot { width: 240px; height: 280px; }
       .info-bubble { max-width: 220px; font-size: 12px; }
