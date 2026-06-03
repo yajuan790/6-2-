@@ -51,7 +51,7 @@
     /* 说明文本框 */
     .info-bubble {
       position: absolute;
-      top: 60px;
+      top: 114px;
       right: 4vw;
       width: 62vw;
       max-width: 380px;
@@ -66,8 +66,8 @@
 
     /* 主标题 */
     .hero-title {
-      margin-top: 60px;
-      z-index: 5;
+      margin-top: 114px;
+      z-index: 10;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -109,7 +109,7 @@
     .mascot {
       position: relative;
       width: 100%;
-      z-index: 5;
+      z-index: 1;
       margin-top: 20px;
     }
     .mascot img {
@@ -129,7 +129,8 @@
       align-items: center;
       gap: 6px;
       color: #fff;
-      font-size: 13px;
+      font-size: 16px;
+      font-weight: 700;
       z-index: 10;
       animation: hintBounce 1.5s ease-in-out infinite;
     }
@@ -167,44 +168,22 @@
     /* ===== 尾屏 ===== */
     .cta-section {
       position: relative;
-      min-height: 100vh;
       background: #5BA8F0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 60px 20px;
+      justify-content: flex-start;
+      padding: 40px 20px 60px;
     }
-    .cta-text {
-      text-align: center;
-      margin-bottom: 40px;
+    .cta-image {
+      width: 90%;
+      max-width: 558px;
+      margin: 0 auto 40px;
     }
-    .cta-text .hashtag {
-      font-size: 28px;
-      font-weight: 800;
-      color: #FFD700;
-      margin-bottom: 12px;
-    }
-    .cta-text .desc {
-      font-size: 22px;
-      font-weight: 700;
-      color: #1a1a2e;
-      line-height: 1.5;
-    }
-    .cta-text .desc .underline {
-      position: relative;
-      display: inline;
-    }
-    .cta-text .desc .underline::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
+    .cta-image img {
       width: 100%;
-      height: 6px;
-      background: #FFD700;
-      border-radius: 3px;
-      transform: rotate(-1deg);
+      height: auto;
+      display: block;
     }
 
     .cta-btn {
@@ -357,16 +336,8 @@
 
   <!-- ===== 尾屏 CTA ===== -->
   <section class="cta-section" id="cta">
-    <div class="deco-star" style="top: 15%; left: 10%;">✦</div>
-    <div class="deco-star" style="top: 25%; right: 15%; animation-delay: 0.5s;">✦</div>
-    <div class="deco-star" style="bottom: 30%; left: 20%; animation-delay: 1s;">✦</div>
-
-    <div class="cta-text">
-      <div class="hashtag">#JOIN US</div>
-      <div class="desc">
-        6月免费活动精选：<br>
-        <span class="underline">射箭</span>、<span class="underline">羽毛球</span>、<span class="underline">桌游</span>
-      </div>
+    <div class="cta-image">
+      <img src="JOIN US.png" alt="#JOIN US 6月免费活动精选">
     </div>
 
     <a href="https://doc.weixin.qq.com/smartsheet/s3_AC0AaAYmACkCNCi7VZvVqSRykxWfO?scode=AJEAIQdfAAoUX8XCFcAagAdAboAK8&tab=tgxWu3&viewId=ve5kMc" class="cta-btn" target="_blank">
@@ -463,7 +434,7 @@
     });
 
     // ===== 尾屏入场动画 =====
-    gsap.from('.cta-text', {
+    gsap.from('.cta-image', {
       y: 60,
       opacity: 0,
       duration: 1,
@@ -487,22 +458,6 @@
         start: 'top 60%',
         toggleActions: 'play none none reverse'
       }
-    });
-
-    // 星星装饰动画
-    gsap.utils.toArray('.deco-star').forEach((star, i) => {
-      gsap.from(star, {
-        scale: 0,
-        opacity: 0,
-        duration: 0.5,
-        delay: i * 0.2,
-        ease: 'back.out(2)',
-        scrollTrigger: {
-          trigger: '.cta-section',
-          start: 'top 70%',
-          toggleActions: 'play none none reverse'
-        }
-      });
     });
 
     // ===== 背景音乐控制 =====
