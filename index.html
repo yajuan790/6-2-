@@ -85,7 +85,8 @@
       width: 28vw;
       max-width: 140px;
       min-width: 90px;
-      margin-left: -30vw;
+      align-self: flex-start;
+      margin-left: 4vw;
       transform: rotate(-5deg);
       z-index: 2;
     }
@@ -94,7 +95,6 @@
       max-width: 480px;
       min-width: 280px;
       margin-top: -2vh;
-      margin-left: 0;
       z-index: 1;
     }
     .hero-title .title-line3 {
@@ -102,7 +102,6 @@
       max-width: 460px;
       min-width: 260px;
       margin-top: -1vh;
-      margin-left: 0;
       z-index: 2;
     }
 
@@ -308,14 +307,14 @@
 
     /* 响应式 */
     @media (max-width: 375px) {
-      .hero-title .title-line1 { max-width: 120px; min-width: 80px; margin-left: -28vw; }
+      .hero-title .title-line1 { max-width: 120px; min-width: 80px; margin-left: 3vw; }
       .hero-title .title-line2 { max-width: 340px; min-width: 240px; }
       .hero-title .title-line3 { max-width: 320px; min-width: 220px; }
       .mascot { width: 240px; height: 280px; }
       .info-bubble { width: 65vw; min-width: 180px; }
     }
     @media (min-width: 430px) {
-      .hero-title .title-line1 { max-width: 160px; margin-left: -32vw; }
+      .hero-title .title-line1 { max-width: 160px; margin-left: 5vw; }
       .hero-title .title-line2 { max-width: 520px; }
       .hero-title .title-line3 { max-width: 500px; }
     }
