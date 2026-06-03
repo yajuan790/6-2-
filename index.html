@@ -22,8 +22,8 @@
     .hero {
       position: relative;
       width: 100%;
-      height: 100vh;
-      min-height: 600px;
+      min-height: 100vh;
+      min-height: 100dvh;
       background: #6CB4F5;
       overflow: hidden;
       display: flex;
@@ -31,6 +31,7 @@
       align-items: center;
       justify-content: flex-start;
       padding-top: 40px;
+      padding-bottom: 120px;
     }
 
     /* 腾讯地图 Logo */
@@ -41,8 +42,9 @@
       z-index: 10;
     }
     .logo img {
-      height: 36px;
-      width: auto;
+      height: auto;
+      width: 80px;
+      max-width: 22vw;
       display: block;
     }
 
@@ -50,13 +52,14 @@
     .info-bubble {
       position: absolute;
       top: 60px;
-      right: 20px;
-      max-width: 260px;
+      right: 4vw;
+      max-width: 62vw;
+      min-width: 200px;
       background: #1a1a2e;
       color: #fff;
       padding: 12px 16px;
       border-radius: 16px;
-      font-size: 13px;
+      font-size: clamp(11px, 3.2vw, 14px);
       line-height: 1.6;
       z-index: 10;
     }
@@ -82,27 +85,35 @@
       gap: 0;
       padding-left: 4%;
       position: relative;
+      width: 96%;
     }
     .hero-title img {
       display: block;
       height: auto;
+      max-width: 100%;
     }
     .hero-title .title-line1 {
-      width: 120px;
-      margin-left: 10px;
+      width: 28vw;
+      max-width: 140px;
+      min-width: 90px;
+      margin-left: 2vw;
       transform: rotate(-5deg);
       z-index: 2;
     }
     .hero-title .title-line2 {
-      width: 420px;
-      margin-top: -20px;
-      margin-left: 30px;
+      width: 92vw;
+      max-width: 480px;
+      min-width: 280px;
+      margin-top: -2vh;
+      margin-left: 6vw;
       z-index: 1;
     }
     .hero-title .title-line3 {
-      width: 400px;
-      margin-top: -5px;
-      margin-left: 5px;
+      width: 90vw;
+      max-width: 460px;
+      min-width: 260px;
+      margin-top: -1vh;
+      margin-left: 1vw;
       z-index: 2;
     }
 
@@ -110,17 +121,20 @@
     .mascot {
       position: absolute;
       bottom: 80px;
-      right: 5%;
-      width: 280px;
-      height: 320px;
+      right: 3%;
+      width: 70vw;
+      max-width: 320px;
+      min-width: 200px;
+      height: auto;
+      aspect-ratio: 280 / 320;
       z-index: 5;
     }
     .mascot-body {
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 180px;
-      height: 280px;
+      width: 64%;
+      height: 88%;
     }
     .mascot-body svg {
       width: 100%;
@@ -128,10 +142,10 @@
     }
     .bell {
       position: absolute;
-      bottom: 40px;
+      bottom: 12%;
       left: 0;
-      width: 140px;
-      height: 160px;
+      width: 50%;
+      height: 50%;
       transform-origin: top center;
       animation: bellSwing 2s ease-in-out infinite;
     }
@@ -306,12 +320,17 @@
     /* 响应式 */
     @media (max-width: 375px) {
       .hero-title { padding-left: 3%; }
-      .hero-title .title-line1 { width: 100px; margin-left: 5px; }
-      .hero-title .title-line2 { width: 360px; margin-left: 20px; }
-      .hero-title .title-line3 { width: 340px; margin-left: 3px; }
-      .hero-title .title-line4 { width: 300px; }
+      .hero-title .title-line1 { max-width: 120px; min-width: 80px; }
+      .hero-title .title-line2 { max-width: 340px; min-width: 240px; }
+      .hero-title .title-line3 { max-width: 320px; min-width: 220px; }
       .mascot { width: 240px; height: 280px; }
       .info-bubble { max-width: 220px; font-size: 12px; }
+    }
+    @media (min-width: 430px) {
+      .hero-title { padding-left: 5%; }
+      .hero-title .title-line1 { max-width: 160px; }
+      .hero-title .title-line2 { max-width: 520px; }
+      .hero-title .title-line3 { max-width: 500px; }
     }
   </style>
 </head>
@@ -333,7 +352,7 @@
     <div class="hero-title">
       <img src="标题1.png" alt="社团" class="title-line1">
       <img src="标题2.png" alt="6月免费活动" class="title-line2">
-      <img src="标题4.png" alt="邀请大家报名啦！" class="title-line3">
+      <img src="标题3.png" alt="邀请大家报名啦！" class="title-line3">
     </div>
 
     <!-- 涂鸦小人和铃铛 -->
@@ -448,7 +467,7 @@
       .from('.hero-title .title-line1', { y: 40, opacity: 0, duration: 0.7 }, '-=0.4')
       .from('.hero-title .title-line2', { y: 40, opacity: 0, duration: 0.7 }, '-=0.5')
       .from('.hero-title .title-line3', { y: 40, opacity: 0, duration: 0.7 }, '-=0.5')
-      .from('.hero-title .title-line4', { y: 40, opacity: 0, duration: 0.7 }, '-=0.5')
+      // .from('.hero-title .title-line4', { y: 40, opacity: 0, duration: 0.7 }, '-=0.5')
       .from('.mascot', { y: 80, opacity: 0, duration: 1 }, '-=0.4')
       .from('.scroll-hint', { opacity: 0, duration: 0.6 }, '-=0.3');
 
