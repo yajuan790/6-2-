@@ -303,12 +303,12 @@
       height: 22px;
       fill: #fff;
     }
-    .music-btn .music-icon .bar {
-      transform-origin: bottom;
-      transition: transform 0.3s;
+    .music-btn .music-icon .sound-wave {
+      transform-origin: left;
+      transition: opacity 0.3s;
     }
-    .music-btn.paused .music-icon .bar {
-      transform: scaleY(0.3);
+    .music-btn.paused .music-icon .sound-wave {
+      opacity: 0;
     }
 
     /* 响应式 */
@@ -331,9 +331,11 @@
   <audio id="bgMusic" loop preload="auto" src="6月2日社团活动宣传.mp3"></audio>
   <button class="music-btn paused" id="musicBtn" aria-label="播放/暂停音乐">
     <svg class="music-icon" viewBox="0 0 24 24" fill="none">
-      <rect class="bar" x="4" y="4" width="3" height="16" rx="1.5" fill="#fff"/>
-      <rect class="bar" x="10.5" y="4" width="3" height="16" rx="1.5" fill="#fff"/>
-      <rect class="bar" x="17" y="4" width="3" height="16" rx="1.5" fill="#fff"/>
+      <!-- 喇叭主体 -->
+      <path d="M4 9v6h3l5 4V5L7 9H4z" fill="#fff"/>
+      <!-- 声波 -->
+      <path class="sound-wave" d="M16 8a4 4 0 0 1 0 8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path class="sound-wave" d="M19 5a8 8 0 0 1 0 14" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
     </svg>
   </button>
 
@@ -373,7 +375,7 @@
     <!-- 射箭 -->
     <div class="photo-card" data-activity="archery">
       <div class="photo-wrapper">
-        <img src="images/archery.jpg" alt="射箭活动" id="img-archery">
+        <img src="射箭.png" alt="射箭活动" id="img-archery">
       </div>
       <div class="photo-label"># 射箭 专注与力量</div>
     </div>
@@ -381,7 +383,7 @@
     <!-- 羽毛球 -->
     <div class="photo-card" data-activity="badminton">
       <div class="photo-wrapper">
-        <img src="images/badminton.jpg" alt="羽毛球活动" id="img-badminton">
+        <img src="羽毛球.png" alt="羽毛球活动" id="img-badminton">
       </div>
       <div class="photo-label"># 羽毛球 速度与协作</div>
     </div>
@@ -389,7 +391,7 @@
     <!-- 桌游 -->
     <div class="photo-card" data-activity="boardgame">
       <div class="photo-wrapper">
-        <img src="images/boardgame.jpg" alt="桌游活动" id="img-boardgame">
+        <img src="桌游.png" alt="桌游活动" id="img-boardgame">
       </div>
       <div class="photo-label"># 桌游 策略与欢乐</div>
     </div>
