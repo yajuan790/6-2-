@@ -24,14 +24,14 @@
       width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
-      background: #6CB4F5;
+      background: #5BA8F0;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       padding-top: 40px;
-      padding-bottom: 120px;
+      padding-bottom: 0;
     }
 
     /* 腾讯地图 Logo */
@@ -107,13 +107,10 @@
 
     /* 涂鸦小人GIF */
     .mascot {
-      position: absolute;
-      bottom: 80px;
-      right: 3%;
-      width: 70vw;
-      max-width: 320px;
-      min-width: 200px;
+      position: relative;
+      width: 100%;
       z-index: 5;
+      margin-top: 20px;
     }
     .mascot img {
       width: 100%;
@@ -151,7 +148,7 @@
     /* ===== 照片瀑布流区域 ===== */
     .gallery-section {
       position: relative;
-      background: #6CB4F5;
+      background: #5BA8F0;
       padding: 100px 0 60px;
     }
 
@@ -204,7 +201,7 @@
     .cta-section {
       position: relative;
       min-height: 100vh;
-      background: #6CB4F5;
+      background: #5BA8F0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -285,7 +282,6 @@
       .hero-title .title-line1 { max-width: 120px; min-width: 80px; margin-left: 3vw; }
       .hero-title .title-line2 { max-width: 340px; min-width: 240px; }
       .hero-title .title-line3 { max-width: 320px; min-width: 220px; }
-      .mascot { width: 240px; height: 280px; }
       .info-bubble { width: 65vw; min-width: 180px; }
     }
     @media (min-width: 430px) {
