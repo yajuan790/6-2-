@@ -81,11 +81,11 @@
       z-index: 5;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 0;
-      padding-left: 4%;
       position: relative;
-      width: 96%;
+      width: 100%;
+      padding-left: 0;
     }
     .hero-title img {
       display: block;
@@ -96,7 +96,7 @@
       width: 28vw;
       max-width: 140px;
       min-width: 90px;
-      margin-left: 2vw;
+      margin-left: 0;
       transform: rotate(-5deg);
       z-index: 2;
     }
@@ -105,7 +105,7 @@
       max-width: 480px;
       min-width: 280px;
       margin-top: -2vh;
-      margin-left: 6vw;
+      margin-left: 0;
       z-index: 1;
     }
     .hero-title .title-line3 {
@@ -113,7 +113,7 @@
       max-width: 460px;
       min-width: 260px;
       margin-top: -1vh;
-      margin-left: 1vw;
+      margin-left: 0;
       z-index: 2;
     }
 
@@ -319,7 +319,6 @@
 
     /* 响应式 */
     @media (max-width: 375px) {
-      .hero-title { padding-left: 3%; }
       .hero-title .title-line1 { max-width: 120px; min-width: 80px; }
       .hero-title .title-line2 { max-width: 340px; min-width: 240px; }
       .hero-title .title-line3 { max-width: 320px; min-width: 220px; }
@@ -327,7 +326,6 @@
       .info-bubble { max-width: 220px; font-size: 12px; }
     }
     @media (min-width: 430px) {
-      .hero-title { padding-left: 5%; }
       .hero-title .title-line1 { max-width: 160px; }
       .hero-title .title-line2 { max-width: 520px; }
       .hero-title .title-line3 { max-width: 500px; }
