@@ -277,6 +277,40 @@
       50% { opacity: 1; transform: scale(1.2); }
     }
 
+    /* 音乐控制按钮 */
+    .music-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 999;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(6px);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    .music-btn:active {
+      background: rgba(255,255,255,0.5);
+    }
+    .music-btn .music-icon {
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+    }
+    .music-btn .music-icon .bar {
+      transform-origin: bottom;
+      transition: transform 0.3s;
+    }
+    .music-btn.paused .music-icon .bar {
+      transform: scaleY(0.3);
+    }
+
     /* 响应式 */
     @media (max-width: 375px) {
       .hero-title .title-line1 { max-width: 120px; min-width: 80px; margin-left: 3vw; }
@@ -292,6 +326,16 @@
   </style>
 </head>
 <body>
+
+  <!-- 背景音乐 -->
+  <audio id="bgMusic" loop preload="auto" src="6月2日社团活动宣传.mp3"></audio>
+  <button class="music-btn paused" id="musicBtn" aria-label="播放/暂停音乐">
+    <svg class="music-icon" viewBox="0 0 24 24" fill="none">
+      <rect class="bar" x="4" y="4" width="3" height="16" rx="1.5" fill="#fff"/>
+      <rect class="bar" x="10.5" y="4" width="3" height="16" rx="1.5" fill="#fff"/>
+      <rect class="bar" x="17" y="4" width="3" height="16" rx="1.5" fill="#fff"/>
+    </svg>
+  </button>
 
   <!-- ===== 首屏 ===== -->
   <section class="hero" id="hero">
@@ -523,6 +567,35 @@
           toggleActions: 'play none none reverse'
         }
       });
+    });
+
+    // ===== 背景音乐控制 =====
+    const bgMusic = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+
+    // 首次交互自动播放
+    function tryAutoPlay() {
+      bgMusic.play().then(() => {
+        musicBtn.classList.remove('paused');
+      }).catch(() => {
+        // 浏览器阻止自动播放，等用户点击
+      });
+      document.removeEventListener('touchstart', tryAutoPlay);
+      document.removeEventListener('click', tryAutoPlay);
+    }
+    document.addEventListener('touchstart', tryAutoPlay, { once: true });
+    document.addEventListener('click', tryAutoPlay, { once: true });
+
+    // 手动切换
+    musicBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (bgMusic.paused) {
+        bgMusic.play();
+        musicBtn.classList.remove('paused');
+      } else {
+        bgMusic.pause();
+        musicBtn.classList.add('paused');
+      }
     });
   </script>
 
