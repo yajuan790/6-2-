@@ -43,8 +43,8 @@
     }
     .logo img {
       height: auto;
-      width: 80px;
-      max-width: 22vw;
+      width: 160px;
+      max-width: 44vw;
       display: block;
     }
 
@@ -149,52 +149,19 @@
     .gallery-section {
       position: relative;
       background: #5BA8F0;
-      padding: 100px 0 60px;
+      padding: 60px 0 60px;
     }
 
     .photo-card {
       position: relative;
       width: 90%;
-      max-width: 400px;
-      margin: 0 auto 80px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      max-width: 558px;
+      margin: 0 auto 40px;
     }
-    .photo-card:nth-child(even) {
-      margin-left: 5%;
-      margin-right: auto;
-    }
-    .photo-card:nth-child(odd) {
-      margin-left: auto;
-      margin-right: 5%;
-    }
-    .photo-wrapper {
-      position: relative;
+    .photo-card img {
       width: 100%;
-      height: 0;
-      padding-bottom: 75%;
-      overflow: hidden;
-    }
-    .photo-wrapper img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 120%;
-      object-fit: cover;
-    }
-    .photo-label {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(0,0,0,0.7);
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 16px;
-      font-weight: 600;
-      backdrop-filter: blur(4px);
+      height: auto;
+      display: block;
     }
 
     /* ===== 尾屏 ===== */
@@ -374,26 +341,17 @@
   <section class="gallery-section" id="gallery">
     <!-- 射箭 -->
     <div class="photo-card" data-activity="archery">
-      <div class="photo-wrapper">
-        <img src="射箭.png" alt="射箭活动" id="img-archery">
-      </div>
-      <div class="photo-label"># 射箭 专注与力量</div>
+      <img src="射箭.png" alt="射箭活动" id="img-archery">
     </div>
 
     <!-- 羽毛球 -->
     <div class="photo-card" data-activity="badminton">
-      <div class="photo-wrapper">
-        <img src="羽毛球.png" alt="羽毛球活动" id="img-badminton">
-      </div>
-      <div class="photo-label"># 羽毛球 速度与协作</div>
+      <img src="羽毛球.png" alt="羽毛球活动" id="img-badminton">
     </div>
 
     <!-- 桌游 -->
     <div class="photo-card" data-activity="boardgame">
-      <div class="photo-wrapper">
-        <img src="桌游.png" alt="桌游活动" id="img-boardgame">
-      </div>
-      <div class="photo-label"># 桌游 策略与欢乐</div>
+      <img src="桌游.png" alt="桌游活动" id="img-boardgame">
     </div>
   </section>
 
@@ -434,33 +392,9 @@
       .from('.mascot', { y: 80, opacity: 0, duration: 1 }, '-=0.4')
       .from('.scroll-hint', { opacity: 0, duration: 0.6 }, '-=0.3');
 
-    // ===== 首屏视差滚动（向上淡出）=====
+    // ===== 首屏视差滚动（标题淡出）=====
     gsap.to('.hero-title', {
       y: -150,
-      opacity: 0,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
-
-    gsap.to('.mascot', {
-      y: -100,
-      opacity: 0,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
-
-    gsap.to('.info-bubble', {
-      y: -80,
       opacity: 0,
       ease: 'none',
       scrollTrigger: {
