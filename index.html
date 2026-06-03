@@ -74,32 +74,27 @@
 
     /* 主标题 */
     .hero-title {
-      margin-top: 120px;
+      margin-top: 100px;
       text-align: center;
       z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
     }
-    .hero-title .line1 {
-      font-size: 42px;
-      font-weight: 900;
-      color: #1a1a2e;
-      line-height: 1.1;
+    .hero-title img {
+      display: block;
+      max-width: 90vw;
+      height: auto;
     }
-    .hero-title .line2 {
-      font-size: 52px;
-      font-weight: 900;
-      color: #FF8C00;
-      line-height: 1.1;
-      position: relative;
-      display: inline-block;
+    .hero-title .title-line1 {
+      width: 140px;
     }
-    .hero-title .line2 .highlight {
-      color: #FFD700;
+    .hero-title .title-line2 {
+      width: 320px;
     }
-    .hero-title .line3 {
-      font-size: 36px;
-      font-weight: 900;
-      color: #1a1a2e;
-      line-height: 1.2;
+    .hero-title .title-line3 {
+      width: 340px;
     }
 
     /* 涂鸦小人和铃铛 */
@@ -301,9 +296,10 @@
 
     /* 响应式 */
     @media (max-width: 375px) {
-      .hero-title .line1 { font-size: 32px; }
-      .hero-title .line2 { font-size: 42px; }
-      .hero-title .line3 { font-size: 28px; }
+      .hero-title .title-line1 { width: 120px; }
+      .hero-title .title-line2 { width: 260px; }
+      .hero-title .title-line3 { width: 280px; }
+      .hero-title .title-line4 { width: 300px; }
       .mascot { width: 240px; height: 280px; }
       .info-bubble { max-width: 220px; font-size: 12px; }
     }
@@ -325,9 +321,10 @@
 
     <!-- 主标题 -->
     <div class="hero-title">
-      <div class="line1">社团</div>
-      <div class="line2"><span class="highlight">6月免费</span>活动</div>
-      <div class="line3">邀请大家报名啦！</div>
+      <img src="标题1.png" alt="社团" class="title-line1">
+      <img src="标题2.png" alt="6月免费" class="title-line2">
+      <img src="标题3.png" alt="活动" class="title-line3">
+      <img src="标题4.png" alt="邀请大家报名啦！" class="title-line4">
     </div>
 
     <!-- 涂鸦小人和铃铛 -->
@@ -439,9 +436,10 @@
     heroTl
       .from('.logo', { y: -30, opacity: 0, duration: 0.8 })
       .from('.info-bubble', { x: 50, opacity: 0, duration: 0.8 }, '-=0.5')
-      .from('.hero-title .line1', { y: 40, opacity: 0, duration: 0.7 }, '-=0.4')
-      .from('.hero-title .line2', { y: 40, opacity: 0, duration: 0.7 }, '-=0.5')
-      .from('.hero-title .line3', { y: 40, opacity: 0, duration: 0.7 }, '-=0.5')
+      .from('.hero-title .title-line1', { y: 40, opacity: 0, duration: 0.7 }, '-=0.4')
+      .from('.hero-title .title-line2', { y: 40, opacity: 0, duration: 0.7 }, '-=0.5')
+      .from('.hero-title .title-line3', { y: 40, opacity: 0, duration: 0.7 }, '-=0.5')
+      .from('.hero-title .title-line4', { y: 40, opacity: 0, duration: 0.7 }, '-=0.5')
       .from('.mascot', { y: 80, opacity: 0, duration: 1 }, '-=0.4')
       .from('.scroll-hint', { opacity: 0, duration: 0.6 }, '-=0.3');
 
