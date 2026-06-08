@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>社团6月免费活动报名</title>
+  <!-- 预加载首屏关键资源 -->
+  <link rel="preload" as="image" href="logo.png">
+  <link rel="preload" as="image" href="标题1.png">
+  <link rel="preload" as="image" href="标题2.png">
+  <link rel="preload" as="image" href="标题3.png">
+  <link rel="preload" as="image" href="对话框内容.png">
+  <link rel="preload" as="image" href="人物素材.gif">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
@@ -327,24 +334,24 @@
   <section class="gallery-section" id="gallery">
     <!-- 射箭 -->
     <div class="photo-card" data-activity="archery">
-      <img src="射箭.png" alt="射箭活动" id="img-archery">
+      <img src="射箭.png" alt="射箭活动" id="img-archery" loading="lazy">
     </div>
 
     <!-- 羽毛球 -->
     <div class="photo-card" data-activity="badminton">
-      <img src="羽毛球.png" alt="羽毛球活动" id="img-badminton">
+      <img src="羽毛球.png" alt="羽毛球活动" id="img-badminton" loading="lazy">
     </div>
 
     <!-- 桌游 -->
     <div class="photo-card" data-activity="boardgame">
-      <img src="桌游.png" alt="桌游活动" id="img-boardgame">
+      <img src="桌游.png" alt="桌游活动" id="img-boardgame" loading="lazy">
     </div>
   </section>
 
   <!-- ===== 尾屏 CTA ===== -->
   <section class="cta-section" id="cta">
     <div class="cta-image">
-      <img src="JOIN US.png" alt="#JOIN US 6月免费活动精选">
+      <img src="JOIN US.png" alt="#JOIN US 6月免费活动精选" loading="lazy">
     </div>
 
     <a href="https://doc.weixin.qq.com/smartsheet/s3_AC0AaAYmACkCNCi7VZvVqSRykxWfO?scode=AJEAIQdfAAoUX8XCFcAagAdAboAK8&tab=tgxWu3&viewId=ve5kMc" class="cta-btn" target="_blank">
